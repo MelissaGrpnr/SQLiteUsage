@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             SQLiteDatabase database = this.openOrCreateDatabase("Musicians", MODE_PRIVATE, null );
-            //Bir database oluşturduk adını modunu ve cursoru yazdık
+            //create database and write mode 
             database.execSQL("CREATE TABLE IF NOT EXISTS musicians(ID INTEGER PRIMARY KEY, name VARCHAR, age INT)");
 
             //database.execSQL("INSERT INTO musicians (name, age) VALUES ('John', 32)");
@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
             //database.execSQL("INSERT INTO musicians (name, age) VALUES ('Yushi', 43)");
 
 
-            //alanın içindeki imleci ifade eder bu imleç alan içinde hareket eder.
+            //represents the cursor inside the field, this cursor moves within the field.
             Cursor cursor = database.rawQuery("SELECT *  FROM musicians WHERE AGE>30", null);
-            //Yer imleci gibi düşünebiliriz hücreleri tek tek gezerek dataları okur
+           // We can think of it as a bookmark, navigates the cells one by one and reads the data
 
             int nameIx= cursor.getColumnIndex("name");
             int ageIx= cursor.getColumnIndex("age");
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception e)
         {
             e.printStackTrace();
-            //alınan hataları logcatte gösterir.
+            // shows the received errors in logcat.
         }
 
     }
